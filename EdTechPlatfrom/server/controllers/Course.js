@@ -175,7 +175,7 @@ exports.getCourseDetails = async(req,res)=>{
                                                 }
                                             )
                                             .populate("category")
-                                            // .populate("ratingAndReviews")
+                                            .populate("ratingAndReviews")
                                             .populate({
                                                 path : "courseContent",
                                                 populate:{

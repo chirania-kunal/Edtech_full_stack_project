@@ -7,8 +7,8 @@ const tabsName =[
     "Free",
     "New to Coding",
     "Most Popular",
-    "Skill Paths",
-    "Carrer Paths",
+    "Skills Paths",
+    "Career Paths",
 ]
 
 
@@ -20,9 +20,11 @@ const ExploreMore = () => {
 
     const setMyCards = (value) => {
         setCurrentTab(value);
-        const result=HomePageExplore.filter((course)=> course.tag === value);
-        setCourse(result[0].courses);
-        setCurrentCard(result[0].courses[0].heading);
+        const result = HomePageExplore.find(
+          course => course.tag.trim().toLowerCase() === value.trim().toLowerCase()
+        );
+        setCourse(result.courses);
+        setCurrentCard(result.courses.heading);
     }
   return (
     <div>

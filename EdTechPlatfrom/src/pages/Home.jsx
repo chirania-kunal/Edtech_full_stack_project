@@ -4,7 +4,7 @@ import {FaArrowRight} from "react-icons/fa"
 import HighlightText from "../components/core/HomePage/HighlightText"
 import CTAButton from '../components/core/HomePage/CTAButton'
 import Banner from '../assets/Images/banner.mp4'
-// import imgSrc from '../assets/Images/images.jpeg'
+import imgSrc from '../assets/Images/edtech_img.png'
 import CodeBlocks from '../components/core/HomePage/CodeBlocks'
 import Footer from '../components/common/Footer'
 import TimeLineSection from '../components/core/HomePage/TimeLineSection'
@@ -20,7 +20,6 @@ export default function Home() {
       <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between'>
     
         <Link to={"/signup"}>
-
           <div className='group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 
           transition-all duration-200 hover:scale-95 w-fit'>
             <div className='flex flex-row items-center gap-5 rounded-full px-10 py-[5px] 
@@ -29,7 +28,6 @@ export default function Home() {
               <FaArrowRight/>
             </div> 
           </div>
-
         </Link>
 
         <div className='text-center text-4xl font-semibold mt-7'>
@@ -52,10 +50,10 @@ export default function Home() {
         </div>
 
         <div className='mx-3 my-12 shadow-blue-200  '>
-          <video muted loop autoPlay className='shadow-white w-[1035px] h-[515px] object-cover border-[0px] shadow-[15px_15px_0px_rgba(0,0,0,1)]' >
+          {/* <video muted loop autoPlay className='shadow-white w-[1035px] h-[515px] object-cover border-[0px] shadow-[15px_15px_0px_rgba(0,0,0,1)]' >
             <source src={Banner} type="video/mp4" />
-          </video>
-          {/* <img src={imgSrc}></img> */}
+          </video> */}
+          <img src={imgSrc} className='shadow-white w-[1035px] h-[515px] object-cover border-[0px] shadow-[15px_15px_0px_rgba(0,0,0,1)]' ></img>
 
         </div>
               

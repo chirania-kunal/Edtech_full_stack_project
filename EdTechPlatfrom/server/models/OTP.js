@@ -35,7 +35,6 @@ async function sendVerificationEmail(email, otp){
 // pre- save middleware to send the mails containing the otp before creating a entry into the database
 // and will move to the next middleware by next();
 OTPSchema.pre("save", async function(next) {
-    console.log("New document saved to database");
     
 	// Only send an email when a new document is created
 	if (this.isNew) {

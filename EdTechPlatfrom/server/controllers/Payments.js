@@ -151,8 +151,8 @@ exports.verifySignature = async(req,res) => {
                 // mail Send cofirmation one 
                 const emailResponse =  await mailSender(
                                                 enrolledStudent.email,
-                                                "Congratulations form codehelp",
-                                                "Congratulation you ar onboarded into new Codehelp Course!",
+                                                "Congratulations form StudyNotion",
+                                                "Congratulation you are onboarded into new StudyNotion Course!",
                 );
 
                 console.log(emailResponse);

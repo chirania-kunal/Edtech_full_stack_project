@@ -47,7 +47,7 @@ const NavBar = () => {
     <div className='flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700'>
         <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
             {/* Image */}
-            <Link to="/home">
+            <Link to="/">
                 <img src={logo} width={160} height={42} loading='lazy' />
             </Link>
 
@@ -64,24 +64,26 @@ const NavBar = () => {
                                         <p>{link.title}</p>
                                         <IoIosArrowDropdownCircle/>
                                         < div className='invisible absolute left-[20%]  
-                                        translate-x-[-10%] translate-y-[70%]
+                                        translate-x-[-10%] translate-y-[25%]
                                         top-[40%]
                                         flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900 
                                         opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100
                                         lg:w-[300px] z-10'>
 
                                             <div className='absolute left-[10%] top-0
-                                                            translate-x-[170%] translate-y-[-45%]
+                                                            translate-x-[200%] translate-y-[-45%]
                                                             h-6 w-6 rotate-45 rounded bg-richblack-5 '>
                                             </div>
                                             {
                                                 subLinks.length ?  (
                                                     subLinks.map((subLink,index) => (
                                                         <Link to='/signup' key={index}>
-                                                            <p >{subLink.name}</p>
+                                                            <p className='hover:text-yellow-25'>{subLink.name}</p>
                                                         </Link>
                                                     ))
-                                                ) : (<div></div>)
+                                                ) : (<div>
+                                                    <p>No Catalog is Present</p>
+                                                </div>)
                                             }
                                         
 
@@ -109,8 +111,11 @@ const NavBar = () => {
             <div className='flex gap-x-4 items-center'>
                 {
                     user && user?.accountType !== "Instructor" && (
-                        <Link to="/dashboard/cart" className='relative'>
-                            <AiOutlineShoppingCart/>
+                        <Link to="/dashboard/cart" className='relative text-white'>
+                            <AiOutlineShoppingCart 
+                            className="text-4xl text-gray-600 hover:text-blue-500 transition-colors duration-300" 
+                            />
+
                             {
                                 totalItems > 0 && (
                                     <span className='text-white'>

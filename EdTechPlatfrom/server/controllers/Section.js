@@ -77,33 +77,54 @@ exports.updateSection = async (req,res) => {
         });
     }
 }
+exports.deleteSection = async (req, res) => {
+    try {
+        const sectionId = req.params.id;
 
-exports.deleteSection = async (req,res)=>{
-    try{
-        // get ID
-        const sectionId= req.params;
-
-        // validation
-        if(!sectionId){
+        // Validation
+        if (!sectionId) {
             return res.status(400).json({
-                success : false,
-                message :"Missing Properties",
+                success: false,
+                message: "Missing section ID",
             });
         }
-        // use findByIdAndDelete to delete
-        await Section.findByIdAndDelete(sectionId);
 
-        // TO DO delete Section Id from the entry in the Course schema
+        // Fetch the section to get course ID before deleting
+        const section = await Section.findById(sectionId);
+        if (!section) {
+            return res.status(404).json({
+                success: false,
+                message: "Section not found",
+            });
+        }
 
-        // return response
+        const courseId = section.courseId; // Make sure your Section schema includes this field
+
+        // Delete the section
+        const deletedSection = await Section.findByIdAndDelete(sectionId);
+
+        // Remove the section reference from the course
+        const updatedCourse = await Course.findByIdAndUpdate(
+            courseId,
+            {
+                $pull: {
+                    courseContent: sectionId,
+                },
+            },
+            { new: true }
+        );
+
         return res.status(200).json({
-            success : true,
-            message : 'Section Deleted Successfully',
-        })
-    }catch(error){
+            success: true,
+            message: "Section deleted successfully",
+            data: updatedCourse,
+        });
+
+    } catch (error) {
+        console.error("Error deleting section:", error);
         return res.status(500).json({
-            success : false,
-            message : "Unable to delete Section Please try again",
-        })
+            success: false,
+            message: "Unable to delete section. Please try again.",
+        });
     }
-}
+};
