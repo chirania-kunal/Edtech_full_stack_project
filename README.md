@@ -1,6 +1,10 @@
 # An Online Education EdTech Platform (MERN Stack App) 
 
-![Main Page](images/mainpage.png)
+![Main Page](images/mainpage_1.png)
+![Main Page](images/mainpage_2.png)
+![Main Page](images/mainpage_3.png)
+
+
 
 ## Project Description
 
