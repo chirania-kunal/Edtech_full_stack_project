@@ -14,6 +14,7 @@ import HighlightText from "../components/core/HomePage/HighlightText"
 const About = () => {
   return (
     <div>
+      {/* Section 1 */}
       <section className="bg-richblack-700">
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
           <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
@@ -35,6 +36,7 @@ const About = () => {
         </div>
       </section>
 
+      {/* Section 2 */}
       <section className="border-b border-richblack-700">
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
           <div className="h-[100px] "></div>
@@ -42,6 +44,7 @@ const About = () => {
         </div>
       </section>
 
+      {/* Section 3 */}
       <section>
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
           <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
@@ -75,6 +78,7 @@ const About = () => {
               />
             </div>
           </div>
+
           <div className="flex flex-col items-center lg:gap-10 lg:flex-row justify-between">
             <div className="my-24 flex lg:w-[40%] flex-col gap-10">
               <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
@@ -98,10 +102,15 @@ const About = () => {
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
+
+      {/* Section 4 */}
       <StatsComponenet />
+
+      {/* Section 5 */}
       <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
         <LearningGrid />
         <ContactFormSection />

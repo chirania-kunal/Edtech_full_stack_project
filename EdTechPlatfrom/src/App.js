@@ -83,10 +83,10 @@ function App() {
 
         <Route
           element={
-          <PrivateRoute>
-            <Dashboard/>
-          </PrivateRoute>
-        }
+            <PrivateRoute>
+              <Dashboard/>
+            </PrivateRoute>
+          } 
         >
           <Route path="dashboard/my-profile" element={<MyProfile/>} />
           <Route path="dashboard/settings" element={<Setting/>} />

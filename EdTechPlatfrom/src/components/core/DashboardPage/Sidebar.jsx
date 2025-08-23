@@ -18,16 +18,14 @@ const Sidebar = () => {
 
     if(profileLoading || authLoading) {
         return (
-            <div className='mt-10'>
-                Loading...
-            </div>
+           <div className='spinner'>Loading...</div>
         )
     }
 
   return (
     <div className='text-white '>
         <div className='flex min-w-[222px]  h-full flex-col border-r-[1px] border-r-richblack-700
-        h-[calc[100vh-3.5rem)] bg-richblack-800 py-10'>
+        h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 '>
 
             <div className='flex flex-col'>
                 {
@@ -41,13 +39,14 @@ const Sidebar = () => {
 
             <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-600'></div>
 
-            <div className='flex flex-col'>
+            <div className='flex flex-col '>
                     <SidebarLink 
                         link={{name:"Settings", path:"dashboard/settings"}}
                         iconName="VscSettingsGear"
                     />
 
-                    <button 
+
+                        <button 
                         onClick={ () => setConfirmationModal({
                             text1: "Are You Sure ?",
                             text2: "You will be logged out of your Account",
@@ -56,15 +55,14 @@ const Sidebar = () => {
                             btn1Handler: () => dispatch(logout(navigate)),
                             btn2Handler: () => setConfirmationModal(null),
                         })}
-                        className='text-sm font-medium text-richblack-300'
+                        className='relative px-8 py-2 text-sm font-medium block w-full '
                         >
 
-                        <div className='flex items-center gap-x-2'>
+                        <div className='flex items-center  gap-x-2'>
                             <VscSignOut className='text-lg'/>
                             <span>Logout</span>
                         </div>
-
-                    </button>
+                        </button>
 
             </div>
 

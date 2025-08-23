@@ -10,9 +10,7 @@ const Dashboard = () => {
 
     if(profileLoading || authLoading){
         return (
-            <div className='mt-10'>
-                Loading...
-            </div>
+            <div className='spinner'>Loading...</div>
         )
     }
 
@@ -20,7 +18,7 @@ const Dashboard = () => {
     <div className='relative flex min-h-[calc(100vh-3.5rem)] '>
         <Sidebar/>
         <div className='h-[calc(100vh-3.5rem)] w-full overflow-auto'>
-            <div className='mx-auto w-11/12 max-w-[1000px] py-10'>
+            <div className='mx-auto  w-11/12 max-w-[1000px] py-10'>
                 <Outlet/>
             </div>
         </div>

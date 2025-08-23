@@ -8,7 +8,7 @@ const ContactFormSection = () => {
             <p className='text-center text-md text-richblack-300 mt-[10px]'>
                 We'd love to here for you, Please fill out this form.
             </p>
-            <div className='mt-[30px]'>
+            <div className='mt-[30px] '>
                 <ContactUsForm/>
             </div>
     </div>
