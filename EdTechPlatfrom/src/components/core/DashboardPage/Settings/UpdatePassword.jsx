@@ -21,7 +21,7 @@ export default function UpdatePassword() {
   } = useForm()
 
   const submitPasswordForm = async (data) => {
-    // console.log("password Data - ", data)
+    console.log("password Data - ", data)
     try {
       await changePassword(token, data)
     } catch (error) {
@@ -36,7 +36,7 @@ export default function UpdatePassword() {
           <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="oldPassword" className="lable-style">
+              <label htmlFor="oldPassword" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 Current Password
               </label>
               <input
@@ -44,8 +44,11 @@ export default function UpdatePassword() {
                 name="oldPassword"
                 id="oldPassword"
                 placeholder="Enter Current Password"
-                className="form-style"
                 {...register("oldPassword", { required: true })}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               <span
                 onClick={() => setShowOldPassword((prev) => !prev)}
@@ -64,7 +67,7 @@ export default function UpdatePassword() {
               )}
             </div>
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="newPassword" className="lable-style">
+              <label htmlFor="newPassword" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 New Password
               </label>
               <input
@@ -72,8 +75,11 @@ export default function UpdatePassword() {
                 name="newPassword"
                 id="newPassword"
                 placeholder="Enter New Password"
-                className="form-style"
                 {...register("newPassword", { required: true })}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               <span
                 onClick={() => setShowNewPassword((prev) => !prev)}

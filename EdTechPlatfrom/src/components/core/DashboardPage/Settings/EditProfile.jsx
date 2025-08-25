@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import CountryCode from '../../../../data/countrycode.json'
 
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
@@ -20,7 +21,7 @@ export default function EditProfile() {
   } = useForm()
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
+    console.log("Form Data - ", data)
     try {
       dispatch(updateProfile(token, data))
     } catch (error) {
@@ -36,8 +37,9 @@ export default function EditProfile() {
             Profile Information
           </h2>
           <div className="flex flex-col gap-5 lg:flex-row">
+            
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="firstName" className="lable-style">
+              <label htmlFor="firstName" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 First Name
               </label>
               <input
@@ -45,9 +47,12 @@ export default function EditProfile() {
                 name="firstName"
                 id="firstName"
                 placeholder="Enter first name"
-                className="form-style"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               {errors.firstName && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -56,7 +61,7 @@ export default function EditProfile() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="lastName" className="lable-style">
+              <label htmlFor="lastName" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 Last Name
               </label>
               <input
@@ -64,9 +69,12 @@ export default function EditProfile() {
                 name="lastName"
                 id="lastName"
                 placeholder="Enter first name"
-                className="form-style"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               {errors.lastName && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -78,14 +86,13 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="dateOfBirth" className="lable-style">
+              <label htmlFor="dateOfBirth" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 Date of Birth
               </label>
               <input
                 type="date"
                 name="dateOfBirth"
                 id="dateOfBirth"
-                className="form-style"
                 {...register("dateOfBirth", {
                   required: {
                     value: true,
@@ -97,6 +104,10 @@ export default function EditProfile() {
                   },
                 })}
                 defaultValue={user?.additionalDetails?.dateOfBirth}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className=" text-white w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               {errors.dateOfBirth && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -105,16 +116,19 @@ export default function EditProfile() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="gender" className="lable-style">
+              <label htmlFor="gender" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 Gender
               </label>
               <select
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               >
                 {genders.map((ele, i) => {
                   return (
@@ -133,34 +147,53 @@ export default function EditProfile() {
           </div>
 
           <div className="flex flex-col gap-5 lg:flex-row">
+
+          <div className="flex flex-col gap-2 lg:w-[48%]">
+                <label htmlFor="phoneNumber" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">Phone Number</label>
+                <div className="flex flex-row gap-5">
+                  <select
+                    id="countrycode"
+                    className="w-[20%] rounded-[0.5rem] bg-richblack-700 p-[10px] text-richblack-5 shadow-inner"
+                    {...register('countrycode', { required: true })}
+                  style={{
+                    boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                  }}
+                    
+                  >
+                    {CountryCode.map((element, index) => (
+                      <option key={index} value={element.code}>
+                        {element.code} - {element.country}
+                      </option>
+                    ))}
+                  </select>
+
+                  <input
+                    type="number"
+                    id="phonenumber"
+                    placeholder="12345 67890"
+                    className="w-[85%] rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 shadow-inner"
+                    style={{
+                      boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    {...register('phoneNo', {
+                      required: { value: true, message: 'Please enter phone number' },
+                      maxLength: { value: 10, message: 'Invalid phone number' },
+                      minLength: { value: 8, message: 'Invalid phone number' },
+                    })}
+                  />
+                </div>
+                <div className="min-h-[20px]">
+                  {errors.phoneNo && (
+                    <span className="-mt-1 text-[12px] text-yellow-100">
+                      {errors.phoneNo.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="contactNumber" className="lable-style">
-                Contact Number
-              </label>
-              <input
-                type="tel"
-                name="contactNumber"
-                id="contactNumber"
-                placeholder="Enter Contact Number"
-                className="form-style"
-                {...register("contactNumber", {
-                  required: {
-                    value: true,
-                    message: "Please enter your Contact Number.",
-                  },
-                  maxLength: { value: 12, message: "Invalid Contact Number" },
-                  minLength: { value: 10, message: "Invalid Contact Number" },
-                })}
-                defaultValue={user?.additionalDetails?.contactNumber}
-              />
-              {errors.contactNumber && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  {errors.contactNumber.message}
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="about" className="lable-style">
+              <label htmlFor="about" className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
                 About
               </label>
               <input
@@ -168,9 +201,12 @@ export default function EditProfile() {
                 name="about"
                 id="about"
                 placeholder="Enter Bio Details"
-                className="form-style"
                 {...register("about", { required: true })}
                 defaultValue={user?.additionalDetails?.about}
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className="w-full rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
               />
               {errors.about && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -178,9 +214,11 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
+
           </div>
         </div>
 
+          
         <div className="flex justify-end gap-2">
           <button
             onClick={() => {

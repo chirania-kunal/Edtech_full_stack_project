@@ -11,10 +11,10 @@ const RenderCartCourses = () => {
     const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className='flex flex-col w-[70%] '>
         {
             cart.map((course,index)=>{
-                <div>
+                <div key={index} >
                     <div>
                         <img src={course?.thumbnail}/>
                         <div>

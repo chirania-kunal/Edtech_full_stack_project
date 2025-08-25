@@ -9,13 +9,15 @@ exports.updatedProfile = async (req,res)=>{
         const {dateOfBirth="",about="",contactNumber,gender} =req.body;
         // getUserId
         const id = req.user.id;
+
         // validtion
-        if(!contactNumber || !gender || !id){
-            return res.status.json({
-                success : false,
-                message : 'All fields are required',
-            })
-        } 
+        // if(!contactNumber || !gender || !id){
+        //   return res.status(400).json({
+        //     success : false,
+        //     message : 'All fields are required',
+        //   })
+        // } 
+
         // find Profile
         const userDetails = await User.findById(id);
         const profileId = userDetails.additionalDetails;
@@ -27,6 +29,7 @@ exports.updatedProfile = async (req,res)=>{
         profileDetails.about = about;
         profileDetails.contactNumber = contactNumber;
 
+     
         
 		// Save the updated profile
         await profileDetails.save();
@@ -35,7 +38,7 @@ exports.updatedProfile = async (req,res)=>{
         return res.status(200).json({
             success : true,
             message : 'Profile Updated Successfully',
-            profileDetails,
+            userDetails,
         });
 
     }catch(error){
